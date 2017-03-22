@@ -45,8 +45,10 @@ class ReviewsController < ApplicationController
     @movie = Movie.find(params[:movie_id])
     @review = Review.find(params[:id])
     @review.movie = @movie
-    if !current_user.is_member_of?(@movie)
-      redirect_to root_path, alert: "必须先收藏才能操作评论！不要耍小聪明哦！"
+    if @review.user != current_user
+      redirect_to root_path, alert: "只能操作自己写过的评论！不要耍小聪明哦！"
+    elsif !current_user.is_member_of?(@movie)
+      redirect_to root_path, alert: "必须先收藏影评才能操作评论！"
     end
   end
 
