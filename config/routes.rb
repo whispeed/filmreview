@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
    namespace :account do
      resources :favorites
+     resources :reviews
    end
 
    root 'movies#index'
