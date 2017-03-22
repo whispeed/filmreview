@@ -41,6 +41,32 @@ class MoviesController < ApplicationController
     redirect_to movies_path, alert: "已删除影评"
   end
 
+  def join
+    @movie = Movie.find(params[:id])
+
+    if !current_user.is_member_of?(@movie)
+      current_user.join!(@movie)
+      flash[:notice] = "收藏影评成功！"
+    else
+      flash[:warning] = "您已经收藏过该影评了！"
+    end
+
+    redirect_to movie_path(@movie)
+  end
+
+  def quit
+    @movie = Movie.find(params[:id])
+
+    if current_user.is_member_of?(@movie)
+      current_user.quit!(@movie)
+      flash[:alert] = "已移出收藏夹！"
+    else
+      flash[:warning] = "您还未收藏该影评！"
+    end
+
+    redirect_to movie_path(@movie)
+  end
+
   private
 
   def find_movie_and_check_permission

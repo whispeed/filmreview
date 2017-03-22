@@ -10,15 +10,15 @@ class User < ApplicationRecord
   has_many :favorite_movies, :through => :favorites, :source => :movie
 
   def is_member_of?(movie)
-    favorites.include?(movie)
+    favorite_movies.include?(movie)
   end
 
   def join!(movie)
-    favorites << movie
+    favorite_movies << movie
   end
 
   def quit!(movie)
-    favorites.delete(movie)
+    favorite_movies.delete(movie)
   end
 
 end
