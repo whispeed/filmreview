@@ -11,10 +11,12 @@
       <% end %>
     </span>
 
-    <%= link_to("写评论", new_movie_review_path(@movie), class: "btn btn-default pull-right")%>
+    <% if current_user && current_user.is_member_of?(@movie) %>
+      <%= link_to("写评论", new_movie_review_path(@movie), class: "btn btn-default pull-right")%>
+    <% end %>
 
     <% if current_user && current_user == @movie.user %>
-      <%= link_to("编辑", edit_movie_path(@movie), class: "btn btn-primary pull-right")%>
+      <%= link_to("编辑影评", edit_movie_path(@movie), class: "btn btn-primary pull-right")%>
     <% end %>
   </div>
   <h2><%= @movie.title %></h2>

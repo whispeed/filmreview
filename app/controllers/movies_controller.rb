@@ -73,7 +73,7 @@ class MoviesController < ApplicationController
   def find_movie_and_check_permission
     @movie = Movie.find(params[:id])
     if current_user != @movie.user
-      redirect_to root_path, alert: "你无权这么做！不要耍小聪明！"
+      redirect_to root_path, alert: "你无权这么做！不要耍小聪明哦！"
     end
   end
 
