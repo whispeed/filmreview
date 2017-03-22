@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorite_movies, :through => :favorites, :source => :movie
 
+  def is_member_of?(movie)
+    favorites.include?(movie)
+  end
+
 end
