@@ -2,25 +2,7 @@
     <h2>新建影评</h2>
 
     <hr>
-    <%= form_for @movie do |f| %>
 
-    <% if @movie.errors.any? %>
-    <ul>
-      <% @movie.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-    <% end %>
-
-    标题
-    <%= f.text_field :title %>
-    <br>
-    内容
-    <br>
-    <%= f.text_area :description %>
-    <br>
-
-    <%= f.submit "发送", :disable_with => '发送中...' %>
-    <% end %>
+    <%= render "form" %>
 
 </div>
