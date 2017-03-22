@@ -1,0 +1,26 @@
+<h2 class="text-center">编辑评论</h2>
+
+<div class="col-md-4 col-md-offset-4">
+  <%= form_for [@movie,@review] do |f| %>
+
+  <% if @review.errors.any? %>
+  <ul>
+    <% @review.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <div class="form-review">
+
+      <div class="form-review string optional">
+          <%= f.label "评论内容", :class => "string optional control-label" %>
+          <%= f.text_area :content, :class => "string optional form-control" %>
+      </div>
+
+  </div>
+
+  <br>
+  <%= f.submit "发送", class: "btn btn-primary", data: { disable_with: "发送中..." } %>
+  <% end %>
+</div>
